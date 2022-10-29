@@ -1,5 +1,3 @@
-import {useState, useCallback} from 'react';
-
 import Header from "../../components/Header";
 import PatientList from "../../components/PatientList";
 
