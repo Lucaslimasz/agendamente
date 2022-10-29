@@ -3,28 +3,29 @@ import ReactModal from 'react-modal';
 import {useForm} from 'react-hook-form';
 
 import * as S from './styles';
+import { usePatients } from '../../hooks/usePatients';
 
-export default function PatientCriation({ isOpen, onCloseModal, patientName }) {
+export default function PatientCriation() {
   const {register, handleSubmit} = useForm();
-  const [data, setData] = useState();
+
+  const {patientName, onCloseModalCriationPatient, isModalCriationPatient, handlePatients} = usePatients();
 
   const handleSubmitForm = (itens) => {
-    setData(itens)
-
-    console.log(data)
+    handlePatients(itens)
   }
 
   return (
     <ReactModal
-      isOpen={isOpen}
+      isOpen={isModalCriationPatient}
       overlayClassName="react-modal-overlay"
       className="react-modal-register-overlay"
-      onRequestClose={onCloseModal}
+      onRequestClose={onCloseModalCriationPatient}
+      ariaHideApp={false}
     >
       <S.Container onSubmit={handleSubmit((itens) => handleSubmitForm(itens))}>
         <h1>Agende uma consulta</h1>
         <div className='name'>
-          <input value={patientName} {...register("name")} disabled/>
+          <input defaultValue={patientName} {...register("name")}/>
           <input placeholder='Idade' {...register("age")} required/>
         </div>
         <div className='date'>

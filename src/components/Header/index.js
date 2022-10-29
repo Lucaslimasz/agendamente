@@ -2,16 +2,20 @@ import React from 'react';
 
 import * as S from './styles';
 
-import Logo from '../../assets/icons/logo.svg'
-import Plus from '../../assets/icons/plus.svg'
+import Logo from '../../assets/icons/logo.svg';
+import Plus from '../../assets/icons/plus.svg';
 
-function Header({setModalCriationPatient, setPatientName}) {
+import { usePatients } from '../../hooks/usePatients';
+
+function Header() {
+  const {setIsModalCriationPatient, patientName, handleNamePatient} = usePatients();
+
   return (
     <S.Container>
       <img src={Logo} alt="agendamente" />
       <div>
-        <input placeholder='Digite o nome do paciente' onChange={e => setPatientName(e.target.value)}/>
-        <button onClick={setModalCriationPatient}>
+        <input placeholder='Digite o nome do paciente' value={patientName} onChange={e => handleNamePatient(e.target.value)}/>
+        <button onClick={setIsModalCriationPatient}>
           <strong>Criar</strong>
           <img src={Plus} alt="+" />
         </button>

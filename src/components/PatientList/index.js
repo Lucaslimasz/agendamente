@@ -8,143 +8,19 @@ import CheckSelected from '../../assets/icons/check-selected.svg';
 import Trash from '../../assets/icons/trash.svg';
 import PatientCriation from '../PatientCriation';
 
-export default function PatientList({ isModalCriationPatient, onCloseModalCriationPatient, patientName }) {
-  const [patients, setPatients] = useState([
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-  ])
+import { usePatients } from '../../hooks/usePatients'
 
-  const completePatientCheck = useCallback((id) => {
-    setPatients(patients.map((item) => {
-      if (item.id === id) {
-        item.concluded = !item.concluded
-      }
+export default function PatientList() {
 
-      return item
-    }))
-  }, [patients])
-
-  const removePatient = useCallback((id) => {
-    setPatients(patients.filter((item) => item.id !== id))
-  },[patients])
+  const { 
+    patients, 
+    completePatientCheck,
+    removePatient, 
+  } = usePatients()
 
   return (
     <>
-      <PatientCriation
-        onCloseModal={onCloseModalCriationPatient}
-        isOpen={isModalCriationPatient}
-        patientName={patientName}
-      />
+      <PatientCriation />
       <S.Container>
         <S.Top>
           <div>
@@ -164,10 +40,11 @@ export default function PatientList({ isModalCriationPatient, onCloseModalCriati
         {
           patients.length > 0 ? (
             <S.Patients>
+              <tbody>
               <tr>
                 <th style={{ color: 'transparent' }}>Checkar</th>
                 <th>Nome</th>
-                <th>Idade</th>
+                <th>Idade</th>  
                 <th>Dia</th>
                 <th>Horário</th>
                 <th></th>
@@ -188,6 +65,7 @@ export default function PatientList({ isModalCriationPatient, onCloseModalCriati
                   </S.Patient>
                 ))
               }
+              </tbody>
             </S.Patients>
           ) : (
             <S.Empty>
