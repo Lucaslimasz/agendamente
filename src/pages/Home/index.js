@@ -3,7 +3,7 @@ import PatientList from "../../components/PatientList";
 
 import * as S from './styles'
 
-function App() {
+function Home() {
 
   return (
     <S.Container>
@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

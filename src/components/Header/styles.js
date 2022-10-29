@@ -39,5 +39,11 @@ export const Container = styled.header`
         color: var(--gray-100);
       }
     }
+
+    .SignOut {
+      background: var(--red-dark);
+      color: var(--gray-100);
+      font-weight: bold;
+    }
   }
 `;

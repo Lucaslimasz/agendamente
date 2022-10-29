@@ -13,6 +13,8 @@ export default createGlobalStyle`
     --blue: #4EA8DE;
 
     --purple: #8284FA;
+
+    --red-dark: #8b0000;
   }
   *{
     margin: 0;

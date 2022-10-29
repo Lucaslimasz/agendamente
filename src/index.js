@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './pages/Home';
-import Global from './styles/global';
+import {Router} from './routes/routes';
 
-import {PatientsProvider} from './hooks/usePatients';
+import Global from './styles/global';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Global />
-    <PatientsProvider>
-      <App />
-    </PatientsProvider>
+    <Router />
   </React.StrictMode>
 );
