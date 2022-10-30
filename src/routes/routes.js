@@ -8,6 +8,7 @@ import { AuthGoogleProvider } from "../hooks/useAuthGoogle";
 import { PrivateRoutes } from "./index";
 
 export const Router = () => {
+  console.log(window.location.pathname)
   return (
     <AuthGoogleProvider>
       <PatientsProvider>
@@ -15,7 +16,7 @@ export const Router = () => {
           <Routes>
             <Route path="/" element={<Auth />} />
             <Route path="/" element={<PrivateRoutes />}>
-              <Route path="home" element={<Home />} />
+              <Route path="/home" element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
