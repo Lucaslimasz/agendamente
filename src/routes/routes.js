@@ -13,8 +13,8 @@ export const Router = () => {
       <PatientsProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/" element={<PrivateRoutes />}>
+            <Route path="/" element={<Auth />} />
+            <Route path="/home" element={<PrivateRoutes />}>
               <Route path="/home" element={<Home />} />
             </Route>
           </Routes>
