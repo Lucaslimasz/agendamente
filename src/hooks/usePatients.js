@@ -53,6 +53,7 @@ export function PatientsProvider({children}){
     setPatients(patients.filter((item) => item.id !== id))
   },[patients, db])
 
+  
   useEffect(() => {
     (async () => {
       const response = await getDocs(useCollectionRef)
@@ -63,6 +64,7 @@ export function PatientsProvider({children}){
       }))
       setPatients(newPatients)
     })()
+    // eslint-disable-next-line
   },[])
 
   return(
