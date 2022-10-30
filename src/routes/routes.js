@@ -5,7 +5,7 @@ import { PatientsProvider } from "../hooks/usePatients";
 import Home from '../pages/Home';
 import Auth from '../pages/Auth';
 import { AuthGoogleProvider } from "../hooks/useAuthGoogle";
-import { PrivateRoutes } from ".";
+import { PrivateRoutes } from "./index";
 
 export const Router = () => {
   return (
