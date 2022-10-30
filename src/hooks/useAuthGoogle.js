@@ -35,6 +35,8 @@ export const AuthGoogleProvider = ({ children }) => {
         sessionStorage.setItem('@AuthFireBase:token', token)
         sessionStorage.setItem('@AuthFireBase:user', JSON.stringify(user))
 
+        window.location.reload();
+
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
