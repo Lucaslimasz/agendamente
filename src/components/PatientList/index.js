@@ -9,14 +9,16 @@ import Trash from '../../assets/icons/trash.svg';
 import PatientCriation from '../PatientCriation';
 
 import { usePatients } from '../../hooks/usePatients'
+import { formatDate } from '../../utils/format-date';
 
-export default function PatientList() {
+export default function PatientList() { 
+  
 
   const { 
     patients, 
     completePatientCheck,
     removePatient, 
-  } = usePatients()
+  } = usePatients();
 
   return (
     <>
@@ -59,7 +61,7 @@ export default function PatientList() {
                     </td>
                     <td className='name'>{item.name}</td>
                     <td>{item.age} Anos</td>
-                    <td>{Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short' }).format(item.date)}</td>
+                    <td>{formatDate(item.date)}</td>
                     <td>{item.time}</td>
                     <td className='stash' onClick={() => removePatient(item.id)}><img src={Trash} alt="Apagar" /></td>
                   </S.Patient>

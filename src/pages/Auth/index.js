@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuthGoogle } from '../../hooks/useAuthGoogle';
 
-
 import * as S from './styles';
 
 import Google from '../../assets/icons/google.webp';

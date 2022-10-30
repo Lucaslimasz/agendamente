@@ -1,26 +1,14 @@
-import {createContext, useState, useCallback, useContext} from 'react';
+import {createContext, useState, useCallback, useContext, useEffect} from 'react';
+
+import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore } from 'firebase/firestore';
+import { firebase } from '../config/firebase'
 
 const PatientsContext = createContext({});
 
 export function PatientsProvider({children}){
-  const [patients, setPatients] = useState([
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-    {
-      id: String(Math.random()),
-      name: 'Sergio Ramos Soares da Silva',
-      age: '23',
-      date: new Date('2022-10-28'),
-      time: '14:40',
-      concluded: false
-    },
-  ])
+  const [patients, setPatients] = useState([]);
+  const db = getFirestore(firebase);
+  const useCollectionRef = collection(db, 'patients');
 
   const [isModalCriationPatient, setIsModalCriationPatient] = useState(false);
   const [patientName, setPatientName] = useState('');
@@ -43,24 +31,39 @@ export function PatientsProvider({children}){
     }))
   }, [patients])
 
-  const handlePatients = useCallback((patient) => {
+  const handlePatients = useCallback(async (patient) => {
     const id = String(Math.random())
     const {name, age, time} = patient
     const newPatient = {
       id, 
       name, 
-      date: new Date(String(patient.date).split('-')), 
+      date: patient.date, 
       age,
       time,
       concluded: false
     }
-    setPatients(prevState => [...prevState, newPatient])
+    await addDoc(useCollectionRef, newPatient)
+    setPatients(prevState => ([...prevState, newPatient]))
     setIsModalCriationPatient(false)
-  },[])
+  },[useCollectionRef])
 
-  const removePatient = useCallback((id) => {
+  const removePatient = useCallback(async (id) => {
+    const userDoc = doc(db, 'patients', id);
+    await deleteDoc(userDoc)
     setPatients(patients.filter((item) => item.id !== id))
-  },[patients])
+  },[patients, db])
+
+  useEffect(() => {
+    (async () => {
+      const response = await getDocs(useCollectionRef)
+      const data = response.docs.map(doc => ({...doc.data(), id: doc.id}))
+      const newPatients = data.map((patient) => ({
+        ...patient,
+        date: new Date(patient.date)
+      }))
+      setPatients(newPatients)
+    })()
+  },[])
 
   return(
     <PatientsContext.Provider value={{
