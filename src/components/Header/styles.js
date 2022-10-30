@@ -46,4 +46,10 @@ export const Container = styled.header`
       font-weight: bold;
     }
   }
+
+  @media (max-width: 730px){
+    div {
+      padding: 0 1.125rem;
+    }
+  }
 `;

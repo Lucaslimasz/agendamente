@@ -13,7 +13,7 @@ export default function PatientCriation() {
   const handleSubmitForm = (itens) => {
     handlePatients(itens)
   }
-
+  
   return (
     <ReactModal
       isOpen={isModalCriationPatient}

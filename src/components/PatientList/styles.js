@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 46rem;
   margin: auto;
   padding-top: 5.625rem;
+
+  @media (max-width: 730px){
+    padding: 5.625rem 1.125rem 0 ;
+  }
 `;
 
 export const Top = styled.div`

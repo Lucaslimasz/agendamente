@@ -41,4 +41,10 @@ export const Container = styled.form`
     font-weight: bold;
     margin-top: 0.4rem;
   }
+
+  @media (max-width: 730px){
+    .name, .date {
+      flex-direction: column;
+    }
+  }
 `

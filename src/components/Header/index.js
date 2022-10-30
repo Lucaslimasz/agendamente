@@ -9,15 +9,18 @@ import { usePatients } from '../../hooks/usePatients';
 import { useAuthGoogle } from '../../hooks/useAuthGoogle';
 
 function Header() {
-  const {setIsModalCriationPatient, patientName, handleNamePatient} = usePatients();
-  const {signOut} = useAuthGoogle()
+  const { setIsModalCriationPatient, patientName, handleNamePatient } = usePatients();
+  const { signOut } = useAuthGoogle()
 
   return (
     <S.Container>
       <img src={Logo} alt="agendamente" />
       <div>
-        <input placeholder='Digite o nome do paciente' value={patientName} onChange={e => handleNamePatient(e.target.value)}/>
-        <button onClick={setIsModalCriationPatient}>
+        <input 
+          placeholder='Digite o nome do paciente' 
+          onChange={e => handleNamePatient(e.target.value)} 
+        />
+        <button onClick={() => patientName.length > 3 && setIsModalCriationPatient(true)}>
           <strong>Criar</strong>
           <img src={Plus} alt="+" />
         </button>

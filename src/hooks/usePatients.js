@@ -55,7 +55,7 @@ export function PatientsProvider({children}){
       concluded: false
     }
     setPatients(prevState => [...prevState, newPatient])
-    console.log(patient)
+    setIsModalCriationPatient(false)
   },[])
 
   const removePatient = useCallback((id) => {
