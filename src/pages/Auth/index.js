@@ -29,10 +29,10 @@ function Auth() {
         console.log(user, accessToken)
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = FacebookAuthProvider.credentialFromError(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // const email = error.customData.email;
+        // const credential = FacebookAuthProvider.credentialFromError(error);
       });
   }
 
